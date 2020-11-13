@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Route, Switch, useHistory, useLocation } from "react-router-dom";
 import { Button, Container, Segment } from "semantic-ui-react";
 import EmployeeIdForm from "../EmployeeIdForm";
+import PriceTagForm from "../PriceTagForm";
 import StepViewer from "../StepViewer";
 
 type Path = "/" | "/employee-badge" | "/price-tag" | "/export" | string;
@@ -38,7 +39,9 @@ function GeneratorModal() {
           <Route path="/employee-badge">
             <EmployeeIdForm />
           </Route>
-          <Route path="/price-tag">Price tag form</Route>
+          <Route path="/price-tag">
+            <PriceTagForm />
+          </Route>
           <Route path="/export">Export page</Route>
           <Route path="/" exact>
             <Button
