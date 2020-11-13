@@ -1,10 +1,9 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { Button, Form, Input } from "semantic-ui-react";
-import { useCurrentStep } from "../../context/CurrentStep";
 
 function EmployeeIdForm() {
-  const { currentStep, setCurrentStep } = useCurrentStep();
-
+  const { push } = useHistory();
   return (
     <Form>
       <Form.Field>
@@ -21,14 +20,14 @@ function EmployeeIdForm() {
       </Form.Field>
       <Button
         onClick={() => {
-          setCurrentStep(currentStep - 1);
+          push("/");
         }}
       >
         Back
       </Button>
       <Button
         onClick={() => {
-          setCurrentStep(currentStep + 1);
+          push("/price-tag");
         }}
       >
         Next

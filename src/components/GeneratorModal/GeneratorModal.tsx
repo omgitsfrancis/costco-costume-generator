@@ -1,35 +1,38 @@
-import React from "react";
-import { Route, Switch, useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Route, Switch, useHistory, useLocation } from "react-router-dom";
 import { Button, Container, Segment } from "semantic-ui-react";
-import { useCurrentStep } from "../../context/CurrentStep";
 import EmployeeIdForm from "../EmployeeIdForm";
 import StepViewer from "../StepViewer";
 
-function GeneratorModal() {
-  const { currentStep, setCurrentStep } = useCurrentStep();
-  const { push } = useHistory();
+type Path = "/" | "/employee-badge" | "/price-tag" | "/export" | string;
 
-  switch (currentStep) {
-    case 0:
-      push("/");
-      break;
-    case 1:
-      push("/employee-badge");
-      break;
-    case 2:
-      push("/price-tag");
-      break;
-    case 3:
-      push("/export");
-      break;
+function getStepNumber(path: Path) {
+  switch (path) {
+    case "/":
+      return 0;
+    case "/employee-badge":
+      return 1;
+    case "/price-tag":
+      return 2;
+    case "/export":
+      return 3;
     default:
-      push("/");
+      return 0;
   }
+}
+
+function GeneratorModal() {
+  const { push } = useHistory();
+  const { pathname } = useLocation();
+  const [currentStepNumber, setCurrentStepNumber] = useState(0);
+
+  useEffect(() => {
+    setCurrentStepNumber(getStepNumber(pathname));
+  }, [pathname]);
 
   return (
     <Container>
-      <div>current step: {currentStep}</div>
-      <StepViewer />
+      <StepViewer currentStep={currentStepNumber} />
       <Segment attached>
         <Switch>
           <Route path="/employee-badge">
@@ -40,7 +43,7 @@ function GeneratorModal() {
           <Route path="/" exact>
             <Button
               onClick={() => {
-                setCurrentStep(1);
+                push("/employee-badge");
               }}
             >
               Start
