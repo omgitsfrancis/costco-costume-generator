@@ -1,34 +1,72 @@
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import { Button, Form, Input } from "semantic-ui-react";
+import { usePriceTagData } from "../../context/FormData";
 
 function PriceTagForm() {
   const { push } = useHistory();
-  const [pricePerEach, setPricePerEach] = useState(false);
+  const {
+    productId,
+    productName,
+    sellPrice,
+    showPricePerEach,
+    quantity,
+    unit,
+    setProductId,
+    setProductName,
+    setSellPrice,
+    setShowPricePerEach,
+    setQuantity,
+    setUnit,
+  } = usePriceTagData();
 
   return (
     <Form>
       <Form.Field>
         <label>Product ID</label>
-        <Input placeholder="6-digit number" />
+        <Input
+          value={productId}
+          onChange={(e) => setProductId(e.currentTarget.value)}
+          placeholder="6-digit number"
+        />
       </Form.Field>
       <Form.Field>
         <label>Product Name</label>
-        <Input placeholder="Product Name" />
+        <Input
+          value={productName}
+          onChange={(e) => setProductName(e.currentTarget.value)}
+          placeholder="Product Name"
+        />
       </Form.Field>
       <Form.Field>
         <label>Sell Price</label>
-        <Input placeholder="Sell Price" />
+        <Input
+          value={sellPrice}
+          onChange={(e) => setSellPrice(e.currentTarget.value)}
+          placeholder="Sell Price"
+        />
       </Form.Field>
       <Form.Checkbox
-        checked={pricePerEach}
-        onChange={(e) => setPricePerEach(!pricePerEach)}
+        checked={showPricePerEach}
+        onChange={(e) => setShowPricePerEach(!showPricePerEach)}
         label="Add price per each section"
       />
-      {pricePerEach && (
+      {showPricePerEach && (
         <Form.Group widths="equal">
-          <Form.Input fluid label="Quantity" placeholder="Quantity" />
-          <Form.Input fluid label="Unit" placeholder="Unit" />
+          <Form.Input
+            value={quantity}
+            onChange={(e) => setQuantity(e.currentTarget.value)}
+            fluid
+            label="Quantity"
+            placeholder="Quantity"
+          />
+          <Form.Input
+            value={unit}
+            onChange={(e) => setUnit(e.currentTarget.value)}
+            fluid
+            label="Unit"
+            placeholder="Unit"
+          />
           <Form.Field>
             <label>Price Per Each (Calculated)</label>
             <span>0.25</span>
