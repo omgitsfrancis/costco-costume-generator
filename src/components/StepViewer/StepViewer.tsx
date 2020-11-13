@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { Icon, Step } from "semantic-ui-react";
 
 interface StepViewerProps {
@@ -6,6 +7,7 @@ interface StepViewerProps {
 }
 
 function StepViewer(props: StepViewerProps) {
+  const { push } = useHistory();
   const { currentStep } = props;
   return (
     <Step.Group attached="top">
@@ -13,7 +15,9 @@ function StepViewer(props: StepViewerProps) {
         active={currentStep === 1}
         completed={currentStep > 1}
         link
-        href="/employee-badge"
+        onClick={() => {
+          push("/employee-badge");
+        }}
       >
         <Icon name="id badge" />
         <Step.Content>
@@ -25,7 +29,9 @@ function StepViewer(props: StepViewerProps) {
         active={currentStep === 2}
         completed={currentStep > 2}
         link
-        href="/price-tag"
+        onClick={() => {
+          push("/price-tag");
+        }}
       >
         <Icon name="dollar" />
         <Step.Content>
@@ -37,8 +43,9 @@ function StepViewer(props: StepViewerProps) {
         active={currentStep === 3}
         completed={currentStep > 3}
         link
-        href="/export"
-      >
+        onClick={() => {
+          push("/export");
+        }}      >
         <Icon name="file pdf" />
         <Step.Content>
           <Step.Title>Export to PDF</Step.Title>
