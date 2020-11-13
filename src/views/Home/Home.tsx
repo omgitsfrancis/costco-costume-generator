@@ -2,7 +2,7 @@ import React from "react";
 import GeneratorModal from "../../components/GeneratorModal";
 import { FormContainer, HomeContainer, PreviewContainer } from "./styles";
 
-export default function HomeView() {
+function HomeView() {
   return (
     <HomeContainer>
       <FormContainer>
@@ -14,3 +14,5 @@ export default function HomeView() {
     </HomeContainer>
   )
 }
+
+export default HomeView;

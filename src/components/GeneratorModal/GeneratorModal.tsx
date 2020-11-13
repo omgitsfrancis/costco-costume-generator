@@ -5,7 +5,7 @@ import { useCurrentStep } from "../../context/CurrentStep";
 import EmployeeIdForm from "../EmployeeIdForm";
 import StepViewer from "../StepViewer";
 
-export default function GeneratorModal() {
+function GeneratorModal() {
   const { currentStep, setCurrentStep } = useCurrentStep();
   const { push } = useHistory();
 
@@ -51,3 +51,5 @@ export default function GeneratorModal() {
     </Container>
   );
 }
+
+export default GeneratorModal;
