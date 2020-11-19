@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Route, Switch, useHistory, useLocation } from "react-router-dom";
 import { Button, Container, Segment } from "semantic-ui-react";
 import EmployeeIdForm from "../EmployeeIdForm";
+import ExportForm from "../ExportForm";
 import PriceTagForm from "../PriceTagForm";
 import StepViewer from "../StepViewer";
 
@@ -42,7 +43,9 @@ function GeneratorModal() {
           <Route path="/price-tag">
             <PriceTagForm />
           </Route>
-          <Route path="/export">Export page</Route>
+          <Route path="/export">
+            <ExportForm />
+          </Route>
           <Route path="/" exact>
             <Button
               onClick={() => {
