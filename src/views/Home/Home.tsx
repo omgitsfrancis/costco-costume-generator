@@ -1,18 +1,15 @@
 import React from "react";
 import GeneratorModal from "../../components/GeneratorModal";
-import { FormContainer, HomeContainer, PreviewContainer } from "./styles";
+import ExportView from "../Export";
+import { HomeContainer } from "./styles";
 
 function HomeView() {
   return (
     <HomeContainer>
-      <FormContainer>
-        <GeneratorModal />
-      </FormContainer>
-      <PreviewContainer>
-        {/* TODO: Add Preview */}
-      </PreviewContainer>
+      <GeneratorModal />
+      <ExportView />
     </HomeContainer>
-  )
+  );
 }
 
 export default HomeView;

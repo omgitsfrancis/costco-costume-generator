@@ -4,12 +4,7 @@ export const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-`;
-
-export const FormContainer = styled.div`
+  height: 100vh;
   background-color: #0272AD;
+  padding: 1rem 0px;
 `;
-
-export const PreviewContainer = styled.div`
-  background-color: white;
-`

@@ -18,6 +18,14 @@ const styles = StyleSheet.create({
     padding: 10,
     border: 2
   },
+  card: {
+    width: 243,
+    height: 153,
+    border: 2
+  },
+  preview: {
+    alignSelf: "center"
+  }
 });
 
 function ExportView() {
@@ -25,10 +33,10 @@ function ExportView() {
   const priceTag = usePriceTagData();
 
   return (
-    <PDFViewer height="100%" width="100%" style={{ position: "absolute" }}>
+    <PDFViewer height="100%" width="960px" style={styles.preview}>
       <Document>
-        <Page size="A4" style={styles.page}>
-          <View style={styles.section}>
+        <Page size="letter" style={styles.page}>
+          <View style={styles.card}>
             <Text>Name: {employeeBadge.name}</Text>
             <Text>Position: {employeeBadge.position}</Text>
             <Text>Employee Since: {employeeBadge.employeeSince}</Text>
