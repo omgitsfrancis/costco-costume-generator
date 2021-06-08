@@ -10,7 +10,6 @@ function App() {
   return (
     <Router>
       <FormDataProvider>
-
         <Switch>
           <Route path="/pdf-export">
             <ExportView />
