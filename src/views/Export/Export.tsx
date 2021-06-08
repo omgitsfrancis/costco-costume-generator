@@ -1,32 +1,8 @@
-import {
-  PDFViewer,
-  Document,
-  Page,
-  View,
-  Text,
-  StyleSheet,
-} from "@react-pdf/renderer";
+import { PDFViewer, Document, Page, View, Text, Image } from "@react-pdf/renderer";
 import React from "react";
 import { useEmployeeBadgeData, usePriceTagData } from "../../context/FormData";
-
-const styles = StyleSheet.create({
-  page: {
-    flexDirection: "column"
-  },
-  section: {
-    margin: 10,
-    padding: 10,
-    border: 2
-  },
-  card: {
-    width: 243,
-    height: 153,
-    border: 2
-  },
-  preview: {
-    alignSelf: "center"
-  }
-});
+import styles from "./styles";
+import logo from "./costco-logo.png";
 
 function ExportView() {
   const employeeBadge = useEmployeeBadgeData();
@@ -36,10 +12,15 @@ function ExportView() {
     <PDFViewer height="100%" width="960px" style={styles.preview}>
       <Document>
         <Page size="letter" style={styles.page}>
-          <View style={styles.card}>
-            <Text>Name: {employeeBadge.name}</Text>
-            <Text>Position: {employeeBadge.position}</Text>
-            <Text>Employee Since: {employeeBadge.employeeSince}</Text>
+          <View style={styles.employeeBadgeContainer}>
+            <Image style={styles.employeeBadgeLogo} src={logo} />
+            <View style={styles.employeeBadgeRedLine} />
+            <Text style={styles.employeeBadgeName}>{employeeBadge.name.toUpperCase() || "NAME"}</Text>
+            <Text style={styles.employeeBadgePosition}>{employeeBadge.position.toUpperCase() || "POSITION"}</Text>
+            <View style={styles.employeeBadgeTenureContainer}>
+              <Text style={styles.employeeBadgeEmployeeSince}>EMPLOYEE SINCE</Text>
+              <Text style={styles.employeeBadgeYear}>{employeeBadge.employeeSince || "YEAR"}</Text>
+            </View>
           </View>
           <View style={styles.section}>
             <Text>Product ID: {priceTag.productId}</Text>
